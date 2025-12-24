@@ -160,23 +160,33 @@ function editNote(note) {
     e.preventDefault(); // prevent button from taking focus
     document.execCommand("strikethrough"); // now works
   });
-editNote.querySelector(".dlt").addEventListener("click", function (e) {
-      let ask=prompt("Are you sure you want to delete this note? Type y/n to confirm.");
-      if(ask=="y"||ask=="Y"){
-        console.log(e.target);
-     note.remove();
-      // Hide this popup (not the first one)
-    editNote.classList.remove("show");
-    editNote.classList.add("hide");
 
-    // hide overlay
+  //Delete note
+editNote.querySelector(".dlt").addEventListener("click", function (e) {
+  let close=confirm("Are you sure you want to delete this note?");
+  if(close)
+    {
+      note.remove();
+  editNote.classList.remove("show");
+  editNote.classList.add("hide");
+
+  // hide overlay
     document.querySelector(".overlay").classList.add("hide");
     document.querySelector(".overlay").classList.remove("show");
      setTimeout(() => {
       editNote.remove();
       console.log("REMOVED");
     }, 200);
-      }
+  }
+    //   let ask=prompt("Are you sure you want to delete this note? Type y/n to confirm.");
+    //   if(ask=="y"||ask=="Y"){
+    //     console.log(e.target);
+    //  note.remove();
+    //   // Hide this popup (not the first one)
+    // editNote.classList.remove("show");
+    // editNote.classList.add("hide");
+
+    
       
     });
   document.body.appendChild(editNote);
